@@ -3,8 +3,11 @@ const ViteExpress = require("vite-express");
 
 const app = express();
 
-app.get("/hello", (req, res) => {
-  res.send("Hello Vite + Vue + Express!");
+app.get("/api/test", (req, res) => {
+  res.json({
+    data: "Hello Vite + Vue + Express!",
+    success: true
+  });
 });
 
 ViteExpress.listen(app, 3000, () =>
