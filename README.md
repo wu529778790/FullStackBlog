@@ -1,3 +1,3 @@
-# frontendBackend
+# Vite + Vue + Express
 
-前端和后端集成的脚手架
+全栈项目
