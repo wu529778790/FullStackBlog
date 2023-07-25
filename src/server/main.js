@@ -13,6 +13,7 @@ async function fetchData(url) {
     throw new Error('请求数据失败');
   }
 }
+
 // 路由处理程序
 app.get("/api/birdpaper", async (req, res) => {
   const url = 'http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=36&pageno=0&count=10';

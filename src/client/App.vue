@@ -1,21 +1,27 @@
 
 
 <template>
-  <div v-loading="isFetching" class="app">
-    {{ data }}
+  <div v-loading="state.isFetching" class="app">
+    <Waterfall :list="state.list" />
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useFetch } from '@vueuse/core';
+import request from '@/utils/request'
+import { onBeforeMount, reactive } from 'vue';
+import Waterfall from '@/components/Waterfall.vue';
 
-const url = computed(() => {
-  return '/api/birdpaper';
+const state = reactive({
+  isFetching: false,
+  list: []
 })
-const { isFetching, data, error } = useFetch(url, {
-    refetch: true
-  });
+
+onBeforeMount(async () => {
+  state.isFetching = true
+  const data = await request('/api/birdpaper')
+  state.isFetching = false
+  state.list = data.data.list
+})
 </script>
 
 <style scoped>
