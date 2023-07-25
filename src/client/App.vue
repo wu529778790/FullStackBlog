@@ -1,13 +1,26 @@
 
 
 <template>
-    hello world
+  <div v-loading="isFetching" class="app">
+    {{ data }}
+  </div>
 </template>
-<script setup>
-fetch('/api/test').then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
-</script>
-<style scoped>
 
+<script setup>
+import { computed } from 'vue';
+import { useFetch } from '@vueuse/core';
+
+const url = computed(() => {
+  return '/api/birdpaper';
+})
+const { isFetching, data, error } = useFetch(url, {
+    refetch: true
+  });
+</script>
+
+<style scoped>
+.app {
+  height: 100vh;
+  overflow: auto;
+}
 </style>
