@@ -34,10 +34,3 @@ async function fetchData(content) {
     state.list = data.data.list;
 }
 </script>
-
-<style scoped>
-.app {
-  height: 100vh;
-  overflow: auto;
-}
-</style>

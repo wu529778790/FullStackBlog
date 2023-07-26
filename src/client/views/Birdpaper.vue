@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="state.isFetching" class="app">
+  <div v-loading="state.isFetching">
     <Waterfall :list="state.list" />
   </div>
 </template>
@@ -21,10 +21,3 @@ onBeforeMount(async () => {
     state.list = data.data.list
 })
 </script>
-
-<style scoped>
-.app {
-  height: 100vh;
-  overflow: auto;
-}
-</style>
