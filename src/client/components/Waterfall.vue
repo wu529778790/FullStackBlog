@@ -1,5 +1,5 @@
 <template>
-    <Waterfall :list="list" :gutter="0" :animationDelay="50" :width="300" :hasAroundGutter="false" :delay="50">
+    <Waterfall :list="list" v-bind="options">
         <template #item="{item}">
             <div class="card">
                 <LazyImg :url="item.url" />
@@ -18,6 +18,13 @@ defineProps({
         default: () => [],
     }
 })
+const options = {
+    gutter: 0,
+    animationDelay: 50,
+    width: 320,
+    hasAroundGutter: false,
+    delay: 50
+}
 </script>
 
 <style>
