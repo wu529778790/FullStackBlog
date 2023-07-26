@@ -16,7 +16,7 @@ const state = reactive({
 
 onBeforeMount(async () => {
     state.isFetching = true
-    const data = await request('/image/search?content=模特')
+    const data = await request('/image/search?content=酷车')
     state.isFetching = false
     state.list = data.data.list
 })

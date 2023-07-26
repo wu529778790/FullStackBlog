@@ -14,19 +14,19 @@ const routes = [
         },
     },
     {
-        path: '/categories',
-        name: 'Categories',
-        components: {
-            menu: () => import('./menu.vue'),
-            default: () => import('@/views/Categories.vue'),
-        },
-    },
-    {
         path: '/newestList',
         name: 'NewestList',
         components: {
             menu: () => import('./menu.vue'),
             default: () => import('@/views/NewestList.vue'),
+        },
+    },
+    {
+        path: '/categories',
+        name: 'Categories',
+        components: {
+            menu: () => import('./menu.vue'),
+            default: () => import('@/views/Categories.vue'),
         },
     },
     {

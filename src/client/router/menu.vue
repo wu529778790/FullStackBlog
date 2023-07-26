@@ -11,24 +11,37 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const defaultActive = ref('/');
+
+watch(
+    () => router.currentRoute.value.path,
+    (newPath) => {
+        defaultActive.value = newPath;
+    },
+    {
+        immediate: true
+    }
+);
+
 const menuItems = ref([
     {
-        name: '鸟纸',
+        name: '推荐',
         path: '/birdpaper',
+    },
+    {
+        name: '最新',
+        path: '/newestList',
     },
     {
         name: '分类',
         path: '/categories',
     },
     {
-        name: '最新列表',
-        path: '/newestList',
-    },
-    {
-        name: '必应图像存档',
+        name: '必应',
         path: '/bingImageArchive',
     },
     {
