@@ -6,20 +6,33 @@
 
 <script setup>
 import request from '@/utils/request'
-import { onBeforeMount, reactive } from 'vue';
+import { reactive, watch } from 'vue';
 import Waterfall from '@/components/Waterfall.vue';
+import { useRoute } from 'vue-router';
 
 const state = reactive({
     isFetching: false,
     list: []
 })
 
-onBeforeMount(async () => {
-    state.isFetching = true
-    const data = await request('/image/search?content=酷车')
-    state.isFetching = false
-    state.list = data.data.list
-})
+const route = useRoute();
+watch(
+    () => route.query.content,
+    (value) => {
+        fetchData(value);
+    },
+    {
+        immediate: true,
+        deep: true
+    }
+);
+
+async function fetchData(content) {
+    state.isFetching = true;
+    const data = await request(`/image/search?content=${content}`);
+    state.isFetching = false;
+    state.list = data.data.list;
+}
 </script>
 
 <style scoped>
