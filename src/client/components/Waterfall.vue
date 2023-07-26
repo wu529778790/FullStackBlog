@@ -1,7 +1,7 @@
 <template>
     <Waterfall :list="list" v-bind="options">
         <template #item="{item}">
-            <div class="card">
+            <div class="card" :key="item.id">
                 <LazyImg :url="item.url" />
             </div>
         </template>
@@ -20,10 +20,8 @@ defineProps({
 })
 const options = {
     gutter: 0,
-    animationDelay: 50,
     width: 320,
-    hasAroundGutter: false,
-    delay: 50
+    hasAroundGutter: true,
 }
 </script>
 

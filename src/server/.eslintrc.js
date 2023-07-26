@@ -23,6 +23,7 @@ module.exports = {
     },
     'rules': {
         // 缩进
-        'indent': ['warn', 4]
+        'indent': ['warn', 4],
+        "space-infix-ops": ["error"]
     }
 }
