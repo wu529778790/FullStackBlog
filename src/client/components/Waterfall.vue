@@ -12,7 +12,7 @@
 import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next'
 import 'vue-waterfall-plugin-next/dist/style.css'
 
-const props = defineProps({
+defineProps({
     list: {
         type: Array,
         default: () => [],

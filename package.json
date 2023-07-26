@@ -2,22 +2,34 @@
   "name": "vite-vue-starter",
   "private": true,
   "version": "0.0.0",
+  "config": {
+    "port": 55800,
+    "cdn": "https://cdn1.fadada.com",
+    "https": false
+  },
   "scripts": {
-    "dev": "nodemon src/server/main.js -w src/server",
-    "start": "NODE_ENV=production node src/server/main.js",
-    "build": "vite build"
+    "dev": "nodemon src/server/index.js -w src/server",
+    "start": "NODE_ENV=production node src/server/index.js",
+    "build": "vite build",
+    "lint:client": "eslint --config src/client/.eslintrc.js --fix src/client",
+    "lint:server": "eslint --config src/server/.eslintrc.js --fix src/server",
+    "lint": "npm run lint:client && npm run lint:server",
+    "deploy": "node src/server/deploy/index.js"
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
     "express": "^4.18.2",
+    "node-cache": "^5.1.2",
     "vite-express": "0.9.2",
     "vue": "^3.3.4",
     "vue-waterfall-plugin-next": "^2.2.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-vue": "^9.15.1",
     "nodemon": "^3.0.1",
     "vite": "^4.4.6"
   }

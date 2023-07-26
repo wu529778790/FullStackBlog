@@ -1,5 +1,3 @@
-
-
 <template>
   <div v-loading="state.isFetching" class="app">
     <Waterfall :list="state.list" />
@@ -12,15 +10,15 @@ import { onBeforeMount, reactive } from 'vue';
 import Waterfall from '@/components/Waterfall.vue';
 
 const state = reactive({
-  isFetching: false,
-  list: []
+    isFetching: false,
+    list: []
 })
 
 onBeforeMount(async () => {
-  state.isFetching = true
-  const data = await request('/api/birdpaper')
-  state.isFetching = false
-  state.list = data.data.list
+    state.isFetching = true
+    const data = await request('/image/birdpaper')
+    state.isFetching = false
+    state.list = data.data.list
 })
 </script>
 
