@@ -34,30 +34,34 @@ router.get("/birdpaper", async (req, res) => {
 
 // 获取 category 数据
 router.get("/getCategory", async (req, res) => {
-    const url = "http://wp.birdpaper.com.cn/intf/getCategory";
+    const url = `http://wp.birdpaper.com.cn/intf/getCategory`;
     const cacheKey = "category";
     await handleRequest(req, res, url, cacheKey);
 });
 
 // 获取最新列表数据
-router.get("/newestList/:start/:count", async (req, res) => {
-    const { start = 0, count = 10 } = req.params;
-    const url = `http://wp.birdpaper.com.cn/intf/newestList?pageno=${start}&count=${count}`;
-    const cacheKey = `newestList_${start}_${count}`;
+router.get("/newestList", async (req, res) => {
+    const pageno = req.query.pageno || 0;
+    const count = req.query.count || 10;
+    const url = `http://wp.birdpaper.com.cn/intf/newestList?pageno=${pageno}&count=${count}`;
+    const cacheKey = `newestList_${pageno}_${count}`;
     await handleRequest(req, res, url, cacheKey);
 });
 
 // 获取 bing 图片存档数据
-router.get("/bingImageArchive/:start/:count", async (req, res) => {
-    const { start = -1, count = 8 } = req.params;
+router.get("/bingImageArchive", async (req, res) => {
+    const start = req.query.start || -1;
+    const count = req.query.count || 8;
     const url = `http://cn.bing.com/HPImageArchive.aspx?format=js&idx=${start}&n=${count}`;
     const cacheKey = `bingImageArchive_${start}_${count}`;
     await handleRequest(req, res, url, cacheKey);
 });
 
 // 搜索数据
-router.get("/search/:content/:start/:count", async (req, res) => {
-    const { content = '', start = 0, count = 10 } = req.params;
+router.get("/search", async (req, res) => {
+    const content = req.query.content || '';
+    const start = req.query.start || 0;
+    const count = req.query.count || 10;
     const url = `http://wp.birdpaper.com.cn/intf/search?content=${content}&pageno=${start}&count=${count}`;
     const cacheKey = `search_${content}_${start}_${count}`;
     await handleRequest(req, res, url, cacheKey);
