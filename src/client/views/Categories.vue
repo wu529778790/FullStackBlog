@@ -22,7 +22,7 @@ onBeforeMount(async () => {
         return {
             ...item,
             id: item.old_id,
-            url: item.icon
+            url: `/image/proxy/${item.icon.split('http://cdn-hw-cms.shanhutech.cn/')[1]}`
         }
     })
 })
