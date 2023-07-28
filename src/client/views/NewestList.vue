@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="state.isFetching" ref="scrollContainer">
+  <div ref="scrollContainer">
     <Waterfall :list="state.list" />
     <div v-if="state.isFetching">加载中...</div>
     <div v-else-if="state.list.length === 0">暂无数据</div>
@@ -12,7 +12,6 @@ import { onBeforeMount, onMounted, onUnmounted, reactive, ref } from 'vue';
 import Waterfall from '@/components/Waterfall.vue';
 
 const state = reactive({
-    isFetching: false,
     list: [],
     currentPage: 0,
     totalPages: 0
@@ -31,9 +30,7 @@ onUnmounted(() => {
 })
 
 async function fetchData() {
-    state.isFetching = true
     const { data } = await request(`/image/newestList?pageno=1&count=${pageSize}`)
-    state.isFetching = false
     state.list = data.list
     state.currentPage = 1
     state.totalPages = Math.ceil(data.total / pageSize)
